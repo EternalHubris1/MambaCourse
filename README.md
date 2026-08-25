@@ -4,18 +4,30 @@ Reproducible backup of the course index and its linked resources.
 
 ## Inventory
 
-- Original workbook preserved at `source/original_course_index.xlsx`.
-- 261 linked cells and 207 unique URLs recorded with original cell coordinates.
+- Exact source workbook preserved as reconstructable Base64 with SHA-256 verification.
+- 261 linked cells and 207 unique URLs mapped to original spreadsheet coordinates.
+- All 12 Yandex materials downloaded and checksummed.
+- 8 files below 100 MiB stored in GitHub as exact-byte Base64.
+- 4 files above 100 MiB recorded with source URLs, sizes, checksums, and absolute Windows destinations.
 - 154 Quizlet sets indexed separately under `quizlet_cards/`.
-- Files over 100 MiB are represented by checksum pointers and restored to `C:\Users\user\Desktop\MambaCourse-LargeFiles`.
 
-## Current limitation
+## Restore the materials on Windows
 
-Quizlet placed the extraction browser in a repeating human-verification challenge. All set URLs are preserved, but card bodies are explicitly marked `blocked` until a lawful export is supplied.
+Clone or download this repository, open PowerShell in its root directory, and run:
 
-## Reconstruction
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\restore-source-workbook.ps1
+powershell -ExecutionPolicy Bypass -File .\tools\restore-materials.ps1
+```
 
-1. Open `source/original_course_index.xlsx` for the original layout.
-2. Use `manifest/link_manifest.csv` to map each URL back to its original cell.
-3. Use `quizlet_cards/quizlet_index.csv` to track card-set exports.
-4. Run `tools/restore-large-files.ps1` after `large_files/pointers.json` is populated.
+Small materials are reconstructed from GitHub. Oversized files are downloaded to:
+
+```text
+C:\Users\user\Desktop\MambaCourse-LargeFiles
+```
+
+Every restored file is checked against its recorded SHA-256 checksum.
+
+## Quizlet limitation
+
+Quizlet placed the extraction browser in a repeating human-verification challenge. All set URLs and IDs are preserved. The paired Markdown schema and TSV importer are ready under `quizlet_cards/` and `tools/import-quizlet-tsv.py`.
