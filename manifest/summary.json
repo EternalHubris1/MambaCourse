@@ -1,0 +1,14 @@
+{
+  "source": "Google Sheets course index",
+  "sheet": "Лист1",
+  "linked_cells": 261,
+  "unique_links": 207,
+  "domains": {
+    "disk.yandex.ru": 12,
+    "quizlet.com": 154,
+    "vk.com": 3,
+    "wordwall.net": 36,
+    "www.youtube.com": 2
+  },
+  "large_file_root": "C:\\Users\\user\\Desktop\\MambaCourse-LargeFiles"
+}
