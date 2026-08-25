@@ -1,0 +1,9 @@
+.tmp/
+.cache/
+sessions/
+cookies/
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
